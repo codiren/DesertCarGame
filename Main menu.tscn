@@ -218,7 +218,7 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "Credits:
 for first version poblin
-for this me"
+for this luckyren and poblin"
 
 [node name="Multiplayer_window" type="Panel" parent="."]
 visible = false
@@ -236,7 +236,6 @@ custom_fonts/font = SubResource( 2 )
 text = "Exit"
 
 [node name="Join" type="Button" parent="Multiplayer_window"]
-visible = false
 margin_left = 349.0
 margin_top = 154.0
 margin_right = 438.0
