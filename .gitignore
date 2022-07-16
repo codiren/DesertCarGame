@@ -1,9 +1,5 @@
-# Plugin Specific ignores
-icon.png.import
-scn/
-override.cfg
-
 # Godot-specific ignores
+*.import
 .import/
 export.cfg
 export_presets.cfg
