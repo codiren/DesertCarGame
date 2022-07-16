@@ -18,8 +18,8 @@ func _ready():
 	$ui/stuff.visible = false
 	$ui/inventory.visible = false
 	for i in $ui/inventory/GridContainer.get_children():
-		i.set_texture(null)
-	$ui/inventory/GridContainer/slot2.set_texture(preload("res://arabCarSolo.png"))
+		i.set_button_icon(null)
+	$ui/inventory/GridContainer/slot2.set_button_icon(preload("res://arabCarSolo.png"))
 func _on_Exit_pressed():
 	get_tree().quit()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -171,10 +171,12 @@ func _on_slot9_pressed():
 func _on_x_pressed():
 	$ui/inventory.visible = false
 func _on_drop_pressed():
-	var kas = $ui/inventory/GridContainer/slot2.get_texture()
+	var kas = $ui/inventory/GridContainer.get_node("slot"+str(selectedslot)).get_button_icon()
 	if kas != null:
 		spawnitem(kas)
 		rpc("spawnitem",kas)
+		$ui/inventory/GridContainer.get_node("slot"+str(selectedslot)).set_button_icon(null)
 remote func spawnitem(who):
 	var daigtas = $Game/TileMap/item.duplicate()
+	daigtas.set_texture(who)
 	$Game/items.add_child(daigtas)
