@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://19637514-happy-arabic-man-giving-thumb-up-on-white-background.webp" type="Texture" id=1]
 [ext_resource path="res://ARIAL.TTF" type="DynamicFontData" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Main menu.gd" type="Script" id=5]
 [ext_resource path="res://arabMan.png" type="Texture" id=6]
 [ext_resource path="res://Camera2D.gd" type="Script" id=7]
-[ext_resource path="res://arabCarSolo.png" type="Texture" id=8]
 [ext_resource path="res://selector.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
@@ -218,7 +217,7 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "Credits:
 for first version poblin
-for this luckyren and poblin"
+for this me"
 
 [node name="Multiplayer_window" type="Panel" parent="."]
 visible = false
@@ -466,73 +465,73 @@ rect_scale = Vector2( 0.25, 0.25 )
 columns = 5
 
 [node name="slot2" type="Button" parent="ui/inventory/GridContainer"]
-margin_right = 262.0
-margin_bottom = 256.0
+margin_right = 250.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 250, 250 )
 theme = SubResource( 12 )
-icon = ExtResource( 8 )
 
 [node name="selection" type="Sprite" parent="ui/inventory/GridContainer/slot2"]
 texture = ExtResource( 9 )
 centered = false
 
 [node name="slot1" type="Button" parent="ui/inventory/GridContainer"]
-margin_left = 266.0
-margin_right = 528.0
-margin_bottom = 256.0
+margin_left = 254.0
+margin_right = 504.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 250, 250 )
 theme = SubResource( 12 )
-icon = ExtResource( 8 )
 
 [node name="slot3" type="Button" parent="ui/inventory/GridContainer"]
-margin_left = 532.0
-margin_right = 794.0
-margin_bottom = 256.0
+margin_left = 508.0
+margin_right = 758.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 250, 250 )
 theme = SubResource( 12 )
-icon = ExtResource( 8 )
 
 [node name="slot4" type="Button" parent="ui/inventory/GridContainer"]
-margin_left = 798.0
-margin_right = 1060.0
-margin_bottom = 256.0
+margin_left = 762.0
+margin_right = 1012.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 250, 250 )
 theme = SubResource( 12 )
-icon = ExtResource( 8 )
 
 [node name="slot5" type="Button" parent="ui/inventory/GridContainer"]
-margin_left = 1064.0
-margin_right = 1326.0
-margin_bottom = 256.0
+margin_left = 1016.0
+margin_right = 1266.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 250, 250 )
 theme = SubResource( 12 )
-icon = ExtResource( 8 )
 
 [node name="slot6" type="Button" parent="ui/inventory/GridContainer"]
-margin_top = 260.0
-margin_right = 262.0
-margin_bottom = 516.0
+margin_top = 254.0
+margin_right = 250.0
+margin_bottom = 504.0
+rect_min_size = Vector2( 250, 250 )
 theme = SubResource( 12 )
-icon = ExtResource( 8 )
 
 [node name="slot7" type="Button" parent="ui/inventory/GridContainer"]
-margin_left = 266.0
-margin_top = 260.0
-margin_right = 528.0
-margin_bottom = 516.0
+margin_left = 254.0
+margin_top = 254.0
+margin_right = 504.0
+margin_bottom = 504.0
+rect_min_size = Vector2( 250, 250 )
 theme = SubResource( 12 )
-icon = ExtResource( 8 )
 
 [node name="slot8" type="Button" parent="ui/inventory/GridContainer"]
-margin_left = 532.0
-margin_top = 260.0
-margin_right = 794.0
-margin_bottom = 516.0
+margin_left = 508.0
+margin_top = 254.0
+margin_right = 758.0
+margin_bottom = 504.0
+rect_min_size = Vector2( 250, 250 )
 theme = SubResource( 12 )
-icon = ExtResource( 8 )
 
 [node name="slot9" type="Button" parent="ui/inventory/GridContainer"]
-margin_left = 798.0
-margin_top = 260.0
-margin_right = 1060.0
-margin_bottom = 516.0
+margin_left = 762.0
+margin_top = 254.0
+margin_right = 1012.0
+margin_bottom = 504.0
+rect_min_size = Vector2( 250, 250 )
 theme = SubResource( 12 )
-icon = ExtResource( 8 )
 
 [node name="x" type="Button" parent="ui/inventory"]
 margin_left = 677.0

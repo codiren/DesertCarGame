@@ -5,8 +5,6 @@ var currentplayerid = 1
 var Firstname = ["Abdul ", "Mehmed ", "Ali ", "Amir ", "Muhamed ", "Khalif "]
 var Middlename = ["al-","adin-","wiyah","bakr-","suley","hash-"]
 var Lastname = ["aladin","yadiz II","yabadil","nashneed","wataqik","qahir"]
-var players = [1,"noskoper"]
-var playerdatasize = 2
 var gamestarted = false
 var config = ConfigFile.new()
 var err = config.load("user://config.cfg")
@@ -39,7 +37,6 @@ func preparegamestart():
 	$Game/players.get_node(str(currentplayerid)).visible = true
 	$ui/stuff.visible = true
 	$Game/players.get_node(str(currentplayerid)).get_node("nametag").text = $Multiplayer_window/currentplayername.text
-	players[1] = $Game/players.get_node(str(currentplayerid)).get_node("nametag").text
 func _on_Credits_pressed():
 	$Main_menu.get_node("Credits2").visible = not $Main_menu.get_node("Credits2").visible
 func spawnplayertogame(id,name):
@@ -61,7 +58,6 @@ func _on_Multiplayer_pressed():
 			$Multiplayer_window/servername.text = config.get_value("man", "ip")
 func _on_Exitm_pressed():
 	$Multiplayer_window.visible = false
-
 func _on_Host_pressed():
 	config = ConfigFile.new()
 	config.set_value("man", "name", $Multiplayer_window/currentplayername.text)
@@ -85,36 +81,33 @@ func _on_Join_pressed():
 	get_tree().connect("connected_to_server", self, "_iconnectedtoserver")
 	get_tree().set_network_peer(peer)
 func _player_connected(id):
-	rpc_id(id, "loadmap",mapasbounds,PoolByteArray(mapas).compress(),playerdatasize,PoolStringArray(players),id)
-	players.append(id)
-	for _i in range(1,playerdatasize):
-		players.append("")
+	var listofchilds = []
+	var listofchildsnames = []
+	for i in $Game/players.get_children():
+		listofchilds.append(int(i.name))
+		listofchildsnames.append(i.get_node("nametag").text)
+	rpc_id(id, "loadmap",mapasbounds,PoolIntArray(mapas),PoolIntArray(listofchilds),PoolStringArray(listofchildsnames),id)
 func _iconnectedtoserver():
 	rpc_id(1, "setname",$Multiplayer_window/currentplayername.text)
 	preparegamestart()
-remote func loadmap(mapsize,maparea,playerdatas,playerlist,myid):
-	players[0] = myid
+remote func loadmap(mapsize,maparea,playerlist,playerlistnames,myid):
 	mapasbounds = mapsize
-	playerdatasize = playerdatas
-	players = Array(playerlist)
-	for i in range(0,len(players),playerdatasize):
-		players[i] = int(players[i])
-#		players[i+2] = int(players[i+2])
-#		players[i+3] = int(players[i+3])
-#		players[i+4] = int(players[i+4])
-	mapas = Array(maparea.decompress(9999999))
+	var playerslistas = Array(playerlist)
+	var playerlistnamai = Array(playerlistnames)
+	playerslistas.append(myid)
+	playerlistnamai.append($Multiplayer_window/currentplayername.text)
+	mapas = Array(maparea)
 	for x in range(0,mapasbounds):
 		for y in range(0,mapasbounds):
 			$Game/TileMap.set_cellv(Vector2(x-(mapasbounds/2),y-(mapasbounds/2)),mapas[y*mapasbounds+x])
 	$Game/players.get_node(str(currentplayerid)).set_name(str(myid))
 	currentplayerid = myid
-	for i in range(0,len(players),playerdatasize):
-		if players[i] != currentplayerid:
-			spawnplayertogame(players[i],players[i+1])
+	for i in range(0,len(playerslistas)-1):
+		if playerslistas[i] != currentplayerid:
+			spawnplayertogame(playerslistas[i],playerlistnamai[i])
 remote func setname(name):
 	var sender = get_tree().get_rpc_sender_id()
 	spawnplayertogame(sender,name)
-	players[players.find_last(sender)+1] = name
 remote func u(newpos):
 	$Game/players.get_node(str(get_tree().get_rpc_sender_id())).position = newpos
 remote func uallah():
@@ -170,13 +163,17 @@ func _on_slot9_pressed():
 	selectedslot = 9
 func _on_x_pressed():
 	$ui/inventory.visible = false
+remote func spawnitem(who,where):
+	var daigtas = $Game/TileMap/item.duplicate()
+	daigtas.set_texture(load(who))
+	$Game/items.add_child(daigtas)
+	daigtas.position = where
 func _on_drop_pressed():
 	var kas = $ui/inventory/GridContainer.get_node("slot"+str(selectedslot)).get_button_icon()
 	if kas != null:
-		spawnitem(kas)
-		rpc("spawnitem",kas)
+		var vieta = $Game/players.get_node(str(currentplayerid)).position
+		spawnitem(kas.resource_path,vieta)
+		print(kas.resource_path)
+		rpc("spawnitem",kas.resource_path,vieta)
 		$ui/inventory/GridContainer.get_node("slot"+str(selectedslot)).set_button_icon(null)
-remote func spawnitem(who):
-	var daigtas = $Game/TileMap/item.duplicate()
-	daigtas.set_texture(who)
-	$Game/items.add_child(daigtas)
+
