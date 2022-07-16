@@ -4,9 +4,9 @@
 [ext_resource path="res://ARIAL.TTF" type="DynamicFontData" id=2]
 [ext_resource path="res://ti.png" type="Texture" id=3]
 [ext_resource path="res://allahWav.wav" type="AudioStream" id=4]
-[ext_resource path="res://Camera2D.gd" type="Script" id=5]
+[ext_resource path="res://Main menu.gd" type="Script" id=5]
 [ext_resource path="res://arabMan.png" type="Texture" id=6]
-[ext_resource path="res://Main menu.gd" type="Script" id=7]
+[ext_resource path="res://Camera2D.gd" type="Script" id=7]
 [ext_resource path="res://arabCarSolo.png" type="Texture" id=8]
 [ext_resource path="res://selector.png" type="Texture" id=9]
 
@@ -167,7 +167,7 @@ font_data = ExtResource( 2 )
 default_font = SubResource( 11 )
 
 [node name="Project" type="Node2D"]
-script = ExtResource( 7 )
+script = ExtResource( 5 )
 
 [node name="Main_menu" type="Sprite" parent="."]
 visible = false
@@ -218,7 +218,7 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "Credits:
 for first version poblin
-for this luckyren and poblin"
+for this me"
 
 [node name="Multiplayer_window" type="Panel" parent="."]
 visible = false
@@ -349,7 +349,7 @@ texture = ExtResource( 6 )
 polygon = PoolVector2Array( -14, 86, 47, 63, 38, -53, 7, -87, -45, -60, -12, -43 )
 
 [node name="Camera2D" type="Camera2D" parent="Game/players/1"]
-script = ExtResource( 5 )
+script = ExtResource( 7 )
 
 [node name="nametag" type="Label" parent="Game/players/1"]
 margin_left = -78.0
