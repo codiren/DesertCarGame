@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://19637514-happy-arabic-man-giving-thumb-up-on-white-background.webp" type="Texture" id=1]
 [ext_resource path="res://ARIAL.TTF" type="DynamicFontData" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Main menu.gd" type="Script" id=5]
 [ext_resource path="res://arabMan.png" type="Texture" id=6]
 [ext_resource path="res://Camera2D.gd" type="Script" id=7]
+[ext_resource path="res://gameover.jpg" type="Texture" id=8]
 [ext_resource path="res://selector.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
@@ -86,7 +87,7 @@ font_data = ExtResource( 2 )
 4/texture = ExtResource( 3 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
-4/region = Rect2( 1600, 0, 200, 200 )
+4/region = Rect2( 0, 400, 200, 200 )
 4/tile_mode = 0
 4/occluder_offset = Vector2( 0, 0 )
 4/navigation_offset = Vector2( 0, 0 )
@@ -138,6 +139,20 @@ font_data = ExtResource( 2 )
 7/shape_one_way_margin = 0.0
 7/shapes = [  ]
 7/z_index = 0
+8/name = "ti.png 8"
+8/texture = ExtResource( 3 )
+8/tex_offset = Vector2( 0, 0 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 0, 200, 200, 200 )
+8/tile_mode = 0
+8/occluder_offset = Vector2( 0, 0 )
+8/navigation_offset = Vector2( 0, 0 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+8/shape_one_way = false
+8/shape_one_way_margin = 0.0
+8/shapes = [  ]
+8/z_index = 0
 
 [sub_resource type="Theme" id=5]
 
@@ -192,18 +207,18 @@ custom_fonts/font = SubResource( 2 )
 text = "Exit"
 
 [node name="Multiplayer" type="Button" parent="Main_menu"]
-margin_left = 145.541
-margin_top = -150.852
-margin_right = 394.541
-margin_bottom = -107.852
+margin_left = 162.808
+margin_top = -93.5839
+margin_right = 411.808
+margin_bottom = -50.5839
 custom_fonts/font = SubResource( 2 )
 text = "Play with people"
 
 [node name="Credits" type="Button" parent="Main_menu"]
 margin_left = 260.247
-margin_top = 12.571
+margin_top = 39.1097
 margin_right = 411.247
-margin_bottom = 55.571
+margin_bottom = 82.1097
 custom_fonts/font = SubResource( 2 )
 text = "Credits"
 
@@ -218,6 +233,14 @@ custom_fonts/font = SubResource( 3 )
 text = "Credits:
 for first version poblin
 for this me"
+
+[node name="Singleplayer" type="Button" parent="Main_menu"]
+margin_left = 106.072
+margin_top = -210.913
+margin_right = 406.072
+margin_bottom = -167.913
+custom_fonts/font = SubResource( 2 )
+text = "Play alone in corner"
 
 [node name="Multiplayer_window" type="Panel" parent="."]
 visible = false
@@ -464,17 +487,17 @@ margin_bottom = 579.0
 rect_scale = Vector2( 0.25, 0.25 )
 columns = 5
 
-[node name="slot2" type="Button" parent="ui/inventory/GridContainer"]
+[node name="slot1" type="Button" parent="ui/inventory/GridContainer"]
 margin_right = 250.0
 margin_bottom = 250.0
 rect_min_size = Vector2( 250, 250 )
 theme = SubResource( 12 )
 
-[node name="selection" type="Sprite" parent="ui/inventory/GridContainer/slot2"]
+[node name="selection" type="Sprite" parent="ui/inventory/GridContainer/slot1"]
 texture = ExtResource( 9 )
 centered = false
 
-[node name="slot1" type="Button" parent="ui/inventory/GridContainer"]
+[node name="slot2" type="Button" parent="ui/inventory/GridContainer"]
 margin_left = 254.0
 margin_right = 504.0
 margin_bottom = 250.0
@@ -551,21 +574,40 @@ rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 2 )
 text = "Drop"
 
+[node name="died" type="Sprite" parent="ui"]
+visible = false
+position = Vector2( 512, 300 )
+scale = Vector2( 3.96875, 2.28906 )
+texture = ExtResource( 8 )
+
+[node name="nametag" type="Label" parent="ui/died"]
+margin_left = -78.0
+margin_top = -115.0
+margin_right = 86.0
+margin_bottom = -87.0
+grow_horizontal = 2
+theme = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Lost connection to server"
+align = 1
+
 [connection signal="pressed" from="Main_menu/Exit" to="." method="_on_Exit_pressed"]
 [connection signal="pressed" from="Main_menu/Multiplayer" to="." method="_on_Multiplayer_pressed"]
 [connection signal="pressed" from="Main_menu/Credits" to="." method="_on_Credits_pressed"]
+[connection signal="pressed" from="Main_menu/Singleplayer" to="." method="_on_Singleplayer_pressed"]
 [connection signal="pressed" from="Multiplayer_window/Exitm" to="." method="_on_Exitm_pressed"]
 [connection signal="pressed" from="Multiplayer_window/Join" to="." method="_on_Join_pressed"]
 [connection signal="pressed" from="Multiplayer_window/Host" to="." method="_on_Host_pressed"]
 [connection signal="pressed" from="Multiplayer_window/generatename" to="." method="_on_generatename_pressed"]
-[connection signal="pressed" from="ui/inventory/GridContainer/slot2" to="." method="_on_slot2_pressed"]
-[connection signal="pressed" from="ui/inventory/GridContainer/slot1" to="." method="_on_slot1_pressed"]
-[connection signal="pressed" from="ui/inventory/GridContainer/slot3" to="." method="_on_slot3_pressed"]
-[connection signal="pressed" from="ui/inventory/GridContainer/slot4" to="." method="_on_slot4_pressed"]
-[connection signal="pressed" from="ui/inventory/GridContainer/slot5" to="." method="_on_slot5_pressed"]
-[connection signal="pressed" from="ui/inventory/GridContainer/slot6" to="." method="_on_slot6_pressed"]
-[connection signal="pressed" from="ui/inventory/GridContainer/slot7" to="." method="_on_slot7_pressed"]
-[connection signal="pressed" from="ui/inventory/GridContainer/slot8" to="." method="_on_slot8_pressed"]
-[connection signal="pressed" from="ui/inventory/GridContainer/slot9" to="." method="_on_slot9_pressed"]
+[connection signal="pressed" from="ui/inventory/GridContainer/slot1" to="." method="_on_slot_pressed" binds= [ 1 ]]
+[connection signal="pressed" from="ui/inventory/GridContainer/slot2" to="." method="_on_slot_pressed" binds= [ 2 ]]
+[connection signal="pressed" from="ui/inventory/GridContainer/slot3" to="." method="_on_slot_pressed" binds= [ 3 ]]
+[connection signal="pressed" from="ui/inventory/GridContainer/slot4" to="." method="_on_slot_pressed" binds= [ 4 ]]
+[connection signal="pressed" from="ui/inventory/GridContainer/slot5" to="." method="_on_slot_pressed" binds= [ 5 ]]
+[connection signal="pressed" from="ui/inventory/GridContainer/slot6" to="." method="_on_slot_pressed" binds= [ 6 ]]
+[connection signal="pressed" from="ui/inventory/GridContainer/slot7" to="." method="_on_slot_pressed" binds= [ 7 ]]
+[connection signal="pressed" from="ui/inventory/GridContainer/slot8" to="." method="_on_slot_pressed" binds= [ 8 ]]
+[connection signal="pressed" from="ui/inventory/GridContainer/slot9" to="." method="_on_slot_pressed" binds= [ 9 ]]
 [connection signal="pressed" from="ui/inventory/x" to="." method="_on_x_pressed"]
 [connection signal="pressed" from="ui/inventory/drop" to="." method="_on_drop_pressed"]
