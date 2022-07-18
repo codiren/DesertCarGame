@@ -184,7 +184,6 @@ default_font = SubResource( 11 )
 script = ExtResource( 5 )
 
 [node name="Main_menu" type="Sprite" parent="."]
-visible = false
 position = Vector2( 517, 300 )
 scale = Vector2( 0.810769, 0.715935 )
 texture = ExtResource( 1 )
@@ -232,7 +231,7 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "Credits:
 for first version poblin
-for this me"
+for this luckyren and poblin"
 
 [node name="Singleplayer" type="Button" parent="Main_menu"]
 margin_left = 106.072
