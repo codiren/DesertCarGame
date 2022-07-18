@@ -303,6 +303,21 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "Server ip:"
 
+[node name="seedtext" type="Label" parent="Multiplayer_window"]
+margin_left = 86.0
+margin_top = 223.0
+margin_right = 198.0
+margin_bottom = 268.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Seed"
+
+[node name="seed" type="LineEdit" parent="Multiplayer_window"]
+margin_left = 152.0
+margin_top = 217.0
+margin_right = 309.0
+margin_bottom = 252.0
+
 [node name="serverportis" type="LineEdit" parent="Multiplayer_window"]
 margin_left = 184.0
 margin_top = 159.0
@@ -312,18 +327,18 @@ text = "6014"
 
 [node name="maxplayers" type="LineEdit" parent="Multiplayer_window"]
 visible = false
-margin_left = 185.0
-margin_top = 225.0
-margin_right = 329.0
-margin_bottom = 260.0
+margin_left = 186.0
+margin_top = 274.0
+margin_right = 330.0
+margin_bottom = 309.0
 text = "8"
 
 [node name="tagmaxplayers" type="Label" parent="Multiplayer_window"]
 visible = false
-margin_left = 70.0
-margin_top = 229.0
-margin_right = 182.0
-margin_bottom = 274.0
+margin_left = 54.0
+margin_top = 276.0
+margin_right = 166.0
+margin_bottom = 321.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "Max players"

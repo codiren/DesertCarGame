@@ -25,7 +25,10 @@ func _on_Exit_pressed():
 func generate_map():
 	var randass = 0.0
 	var noise = OpenSimplexNoise.new()
-	noise.seed = randi()
+	if $Multiplayer_window/seed.text:
+		noise.seed = hash($Multiplayer_window/seed.text)
+	else:
+		noise.seed = randi()
 	noise.octaves = 0.6
 	noise.period = 20.0
 	noise.persistence = 20
